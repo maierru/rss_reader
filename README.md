@@ -1,6 +1,6 @@
 # My Tkinter Application
 
-This is a simple Tkinter application template.
+Simple RSS Feed Reader
 
 ## Features
 
@@ -54,7 +54,7 @@ python main.py
 ## Dependencies
 
 - Python 3.x
-- Tkinter (usually comes pre-installed with Python)
+- customtkinter
 - feedparser
 
 ## License
