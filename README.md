@@ -28,7 +28,19 @@ This is a simple Tkinter application template.
 
 ## Running the Application
 
-After setting up the environment, you can run the application with:
+After setting up the environment, you can run the application:
+
+On Unix-like systems (Linux, macOS):
+```
+./run_app.sh
+```
+
+On Windows:
+```
+run_app.bat
+```
+
+Alternatively, you can run the application directly with Python:
 ```
 python main.py
 ```
