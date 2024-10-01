@@ -15,45 +15,52 @@ class Application(ctk.CTkFrame):
         self.master = master
         self.master.title("RSS Feed Reader")
         self.master.geometry("800x600")
-        self.pack(fill="both", expand=True)
+        self.grid(row=0, column=0, sticky="nsew")
+        self.master.grid_rowconfigure(0, weight=1)
+        self.master.grid_columnconfigure(0, weight=1)
         self.feed_manager = FeedManager()
         self.feeds = []
         self.create_widgets()
         self.load_feeds()
 
     def create_widgets(self):
-        # Main frame
-        self.main_frame = ctk.CTkFrame(self)
-        self.main_frame.pack(fill="both", expand=True)
+        # Configure grid
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
 
         # Left panel
-        self.left_frame = ctk.CTkFrame(self.main_frame, width=200)
-        self.left_frame.pack(side="left", fill="y", padx=10, pady=10)
+        self.left_frame = ctk.CTkFrame(self, width=200)
+        self.left_frame.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+        self.left_frame.grid_rowconfigure(2, weight=1)
+        self.left_frame.grid_columnconfigure(0, weight=1)
 
         self.feed_label = ctk.CTkLabel(self.left_frame, text="RSS Feeds", font=("Arial", 16, "bold"))
-        self.feed_label.pack(pady=(10, 5))
+        self.feed_label.grid(row=0, column=0, pady=(10, 5))
 
         self.entry_frame = ctk.CTkFrame(self.left_frame)
-        self.entry_frame.pack(fill="x", padx=10, pady=5)
+        self.entry_frame.grid(row=1, column=0, sticky="ew", padx=10, pady=5)
+        self.entry_frame.grid_columnconfigure(0, weight=1)
 
         self.feed_entry = ctk.CTkEntry(self.entry_frame, placeholder_text="Enter RSS URL")
-        self.feed_entry.pack(side="left", padx=(0, 5), fill="x", expand=True)
+        self.feed_entry.grid(row=0, column=0, sticky="ew", padx=(0, 5))
 
         self.add_button = ctk.CTkButton(self.entry_frame, text="+", width=30, command=self.add_feed)
-        self.add_button.pack(side="right")
+        self.add_button.grid(row=0, column=1)
 
         self.feed_scrollable_frame = ctk.CTkScrollableFrame(self.left_frame)
-        self.feed_scrollable_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        self.feed_scrollable_frame.grid(row=2, column=0, sticky="nsew", padx=10, pady=5)
 
         # Right panel
-        self.right_frame = ctk.CTkFrame(self.main_frame)
-        self.right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+        self.right_frame = ctk.CTkFrame(self)
+        self.right_frame.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+        self.right_frame.grid_rowconfigure(1, weight=1)
+        self.right_frame.grid_columnconfigure(0, weight=1)
 
         self.content_title = ctk.CTkLabel(self.right_frame, text="", font=("Arial", 16, "bold"))
-        self.content_title.pack(pady=(10, 5))
+        self.content_title.grid(row=0, column=0, pady=(10, 5))
 
         self.content_scrollable_frame = ctk.CTkScrollableFrame(self.right_frame)
-        self.content_scrollable_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        self.content_scrollable_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=5)
 
     def add_feed(self):
         url = self.feed_entry.get().strip()
