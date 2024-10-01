@@ -101,12 +101,14 @@ class Application(ctk.CTkFrame):
         frame = ctk.CTkFrame(self.feed_scrollable_frame)
         frame.pack(fill="x", padx=5, pady=2)
 
-        label = ctk.CTkLabel(frame, text=f"-> {title}", font=("Arial", 12))
-        label.pack(side="left", fill="x", expand=True)
+        frame.grid_columnconfigure(0, weight=1)
+
+        label = ctk.CTkLabel(frame, text=f"{title}", font=("Arial", 12), anchor="w")
+        label.grid(row=0, column=0, sticky="ew", padx=(5, 0))
         label.bind("<Button-1>", lambda e, u=url: self.read_feed(u))
 
         delete_button = ctk.CTkButton(frame, text="🗑", width=30, command=lambda: self.delete_feed(frame, url))
-        delete_button.pack(side="right")
+        delete_button.grid(row=0, column=1, padx=(5, 5))
 
     def delete_feed(self, frame, url):
         frame.destroy()
