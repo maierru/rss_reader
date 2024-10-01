@@ -13,8 +13,8 @@ This is a simple Tkinter application template.
 1. Ensure you have Python 3.x installed on your system.
 2. Clone this repository:
    ```
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/maierru/rss_reader
+   cd rss_reader
    ```
 3. Create and activate a virtual environment:
    ```
@@ -47,4 +47,4 @@ python main.py
 
 ## License
 
-[Your chosen license]
+no licence
