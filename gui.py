@@ -22,6 +22,7 @@ class Application(ctk.CTkFrame):
         self.feeds = []
         self.create_widgets()
         self.load_feeds()
+        self.display_first()
 
     def create_widgets(self):
         # Create all widgets
@@ -35,13 +36,13 @@ class Application(ctk.CTkFrame):
         self.configure_grid()
 
     def create_frames(self):
-        self.left_frame = ctk.CTkFrame(self, width=200)
+        self.left_frame = ctk.CTkFrame(self, width=400)
         self.right_frame = ctk.CTkFrame(self)
         self.entry_frame = ctk.CTkFrame(self.left_frame)
 
     def create_labels(self):
         self.feed_label = ctk.CTkLabel(self.left_frame, text="RSS Feeds", font=("Arial", 16, "bold"))
-        self.content_title = ctk.CTkLabel(self.right_frame, text="", font=("Arial", 16, "bold"))
+        self.content_title = ctk.CTkLabel(self.right_frame, text="Feed Content", font=("Arial", 16, "bold"))
 
     def create_entry(self):
         self.feed_entry = ctk.CTkEntry(self.entry_frame, placeholder_text="Enter RSS URL")
@@ -148,6 +149,11 @@ class Application(ctk.CTkFrame):
         self.feeds = self.feed_manager.load_feeds()
         for feed_title, url in self.feeds:
             self.create_feed_item(feed_title, url)
+
+    def display_first(self):
+        if self.feeds:
+            self.read_feed(self.feeds[0][1])
+
 
     def on_closing(self):
         self.feed_manager.close()
